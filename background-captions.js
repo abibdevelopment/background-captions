@@ -104,18 +104,31 @@ class BackgroundCaptions {
 
       // Add Caption to Section
       section.insertAdjacentElement("beforeend", captionContainer);
+      console.log('added')
 
       // Icon Style Show & Hide
       if (style.includes("icon") && action.includes("hover")) {
         captionContainer.addEventListener("mouseenter", function () {
+          console.log('mouseenter')
           captionTextElement.style.display = "block";
         });
 
         captionContainer.addEventListener("mouseleave", function () {
+          console.log('mouseleave')
           captionTextElement.style.display = "";
         });
+
+        document.addEventListener('touchstart', function(e) {
+          if (e.target.closest('.caption-container') === captionContainer) {
+            captionTextElement.style.display = "block";
+          } else {
+            captionTextElement.style.display = "";
+          }
+        })
+
       } else if (style.includes("icon") && action.includes("click")) {
         captionContainer.addEventListener("click", function () {
+          console.log('click')
           captionTextElement.classList.toggle("show-caption");
         });
       }
